@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app_update:
+    image: api_update:latest
+    container_name: app_update
+    ports:
+      - "5002:5002"
+    volumes:
+      - /home/miguel/Projeto/fraud_detection/mlruns:/app/mlruns

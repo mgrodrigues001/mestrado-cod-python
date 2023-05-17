@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app_inferencia:
+    image: api_inferencia:latest
+    container_name: app_inferencia
+    ports:
+      - "5001:5001"
+    volumes:
+      - /home/miguel/Projeto/fraud_detection/mlruns:/app/mlruns
