@@ -8,20 +8,20 @@ import matplotlib.pyplot as plt
 import pickle
 
 # Carregar dataset
-df = pd.read_csv("df_bal_train.csv")
+df = pd.read_csv("/home/miguel/Projeto/fraud_detection/datasets/df_bal_train.csv")
 
 # Separando DataFrame em X e y
 X = pd.DataFrame(df)
 y = X.pop('Class')
 
 # treinado o modelo
-auc_score = metrics.ROCAUC()
+auc_score = metrics.ROCAUC(n_thresholds=20)
 metric_dist_plot = []
 n = 0
 numero = []
 
 # Cria um objeto de classificador ARF
-model = AdaptiveRandomForestClassifier(n_models=10, seed=42)
+model = AdaptiveRandomForestClassifier(n_models=5, seed=42)
 
 for xi, yi in stream.iter_pandas(X, y):
     y_pred = model.predict_one(xi)
