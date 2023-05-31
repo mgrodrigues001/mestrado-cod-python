@@ -22,8 +22,8 @@ def predict():
     y_pred = model.predict_one(data)
     contador += 1
     
-    #return jsonify(int(y_pred))
-    return jsonify(f'Pred: {y_pred} -- Run_id: {last_run["run_id"]} -- Contador: {contador}')
+    return jsonify(int(y_pred))
+    #return jsonify(f'Pred: {y_pred} -- Run_id: {last_run["run_id"]} -- Contador: {contador}')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
