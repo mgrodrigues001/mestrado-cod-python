@@ -28,9 +28,11 @@ def update():
 
     # Faz o update modelo
     model = model.learn_one(Xi, yi)
+    y_pred = model.predict_one(Xi)
     contador += 1
     
-    return jsonify(f'Contador: {contador} -- {str(first_run["run_id"])}')
+    return jsonify(int(y_pred))
+    #return jsonify(f'Contador: {contador} -- {str(first_run["run_id"])}')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002)
