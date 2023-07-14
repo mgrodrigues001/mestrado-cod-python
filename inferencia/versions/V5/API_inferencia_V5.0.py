@@ -22,7 +22,10 @@ def envia():
             item = fila_envio.pop(0)
             feature = item[0]
             label = item[1]
-            r = requests.post(url,json=(feature, label))
+            try:
+                r = requests.post(url,json=(feature, label))
+            except:
+                pass
 
 
 threading.Thread(target=envia).start()

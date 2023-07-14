@@ -23,9 +23,10 @@ def salva(modelo):
     with mlflow.start_run(nested=True):
         caminho = "/app/mlruns/960876711757393375/" +str(mlflow.active_run().info.run_id) + "/artifacts/model_agr_a"
         mlflow.sklearn.save_model(modelo, caminho, serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE)
-    modelo = str(mlflow.active_run().info.run_id)
-    for i in list_pods:
-        r = requests.post(i,json=(modelo))
+        
+        modelo_id = str(mlflow.active_run().info.run_id)
+        for i in list_pods:
+            r = requests.post(i,json=(modelo_id))
 
 app = Flask(__name__)
 
@@ -43,11 +44,8 @@ def update():
     contador += 1
 
     if contador%taxa_load == 0:
-        try:
-            threading.Thread(target=salva, args=(model,)).start()
-        except:
-            pass
-    
+        threading.Thread(target=salva, args=(model,)).start()
+
     return jsonify('ok')
 
 @app.route('/taxa', methods=['POST'])

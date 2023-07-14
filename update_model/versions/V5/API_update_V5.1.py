@@ -18,7 +18,7 @@ runs_df = mlflow.search_runs(experiment_ids=[mlflow.get_experiment_by_name(exper
 first_run= runs_df.iloc[-1]
 model = mlflow.sklearn.load_model("/app/mlruns/960876711757393375/" + str(first_run["run_id"]) + "/artifacts/model_agr_a")
 
-def salva(modelo):
+def salva():
     global experiment_name, list_pods, fila_modelo
     while True:
         if len(fila_modelo) != 0:
